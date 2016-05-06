@@ -1,0 +1,98 @@
+body
+{
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6em;
+    -webkit-user-select: none;  
+    -moz-user-select: none;     
+    -ms-user-select: none;      
+    user-select: none;             
+}
+label
+{
+    font-weight: normal;
+}
+text
+{
+    font-family: 'Roboto', sans-serif;
+}
+.btn
+{
+    font-weight: normal;
+}
+h1
+{
+    text-align: center;
+}
+hr
+{
+    border-top: 1px solid #ccc;
+}
+.panel-footer ol
+{
+    padding-left: 20px;
+}
+.side-panel
+{
+    padding: 0;
+}
+#tm_states
+{
+    font-family: Consolas,"Courier New",monospace;
+}
+.label
+{
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+}
+#paper
+{
+    text-align: center;
+    overflow: visible;
+}
+#empty_paper
+{
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+#empty_paper h1
+{
+    padding: 100px 0 0 0;
+    opacity: 0.2;
+    font-size: 3.5em;
+}
+.viewport
+{
+    padding: 0 10px 0 10px;
+}
+#tape
+{
+    text-align: center;
+    white-space: nowrap;
+    overflow: scroll;
+    padding: 10px 0;
+    margin-bottom: 0;
+}
+#tape .note
+{
+    opacity: 0.3;
+}
+#tape_area .panel-body
+{
+    padding: 0;
+}
+#tape_input
+{
+    font-family: Consolas,"Courier New",monospace;
+}
+#transition
+{
+    font-family: Consolas,"Courier New",monospace;
+}
+footer
+{
+    text-align: center;
+    padding: 10px 0 5px;
+}
