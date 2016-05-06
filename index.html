@@ -1,1 +1,135 @@
-My Page
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Single Tape Turing Machine Simulator</title>
+
+    <!-- Bootstrap -->
+    <link href="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/joint.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/animate.min.css" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+      
+      <header class="container-fluid">
+        <div class="row"><h1>Single Tape Turing Machine Simulator</h1>
+        </div>
+        <hr>
+      </header>
+      
+      <div class="container">
+        <div class="row">
+            <div class="col-sm-4 panel panel-default side-panel">
+                <div class="panel-heading">Control panel</div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="tm_states">Turing Machine States:</label>
+                        <br/>
+                        <textarea id="tm_states" class="form-control" rows="3">start state
+end states
+transitions</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Machine Type: </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="MachineType" id="acceptor" value="acceptor" checked> <small>Acceptor</small>
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="MachineType" id="generator" value="generator"> <small>Producer</small>
+                        </label>
+                     </div>
+                    <button type="button" class="btn btn-warning" id="draw">Draw</button>
+                    <br/>
+                    <hr>
+                    <div class="form-group">
+                        <label class="sr-only" for="tape_input">Tape Input</label>
+                        <input type="text" class="form-control" id="tape_input" placeholder="Tape Input" disabled>
+                    </div>
+                    <div class="form-group">
+                        <div class="btn-group" role="group" aria-label="Running">
+                            <button id="start" type="button" class="btn btn-success" disabled><span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start</button>
+                            <button id="step" type="button" class="btn btn-default" disabled><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span> Step</button>
+                            <button id="run" type="button" class="btn btn-default" disabled><span class="glyphicon glyphicon-forward" aria-hidden="true"></span> Fast Run</button>
+                            <button id="finish" type="button" class="btn btn-default" disabled><span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span> Finish</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="transition">Transition:</label>
+                        <input type="text" class="form-control" id="transition" placeholder="Transition" value="δ(*, *) = (*, *, *)" disabled>
+                    </div>
+                    <!-- this is the tape -->
+                    <div class="form-group" id="tape_area">
+                        <label>Tape:</label>
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <p id="tape">
+                                    <span class="note">The tape appears here.</span>
+                                    <!--<span class="label label-default">a</span><span class="label label-default">a</span><span class="label label-default">a</span><span class="label label-default">a</span><span class="label label-default">a</span>-->
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group panel panel-default" id="output_panel">
+                        <div class="panel-body">
+                            <label>Output:</label><code id="output"></code>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel-footer">
+                    <ol>
+                        <li>Choose the machine type.</li>
+                        <li>Then write the transitions inside the textbox, in the form: <code>0,a>1,b,R</code>. The transitions should be separated with a new line. you should use <code>*</code>'s instead of <code>&#9633;</code>'s.</li>
+                        <li>Click the <span class="label label-warning">Draw</span> button.</li>
+                        <li>Enter the Tape Input then click the <span class="label label-success">Start</span> button.</li>
+                        <li>Use the buttons to iterate over the tape the functions are as follows:
+                            <ul>
+                                <li><span class="label label-default">Step</span>: moves one step on the tape, with detailed effect on the tape, and the transition on the diagram.</li>
+                                <li><span class="label label-default">Fast run</span>: iterates on the tape fast, with detailed transition information.</li>
+                                <li><span class="label label-default">Finish</span>: finishes the whole input in one step, resulting the output.</li>
+                            <ul>
+                        </li>
+                    </ol>
+                </div>-->
+            </div>
+            
+            <div id="paper" class="col-sm-8">
+                <!--<div id="cover"></div>-->
+                <div id="empty_paper">
+                    <h1>Graph Appears Here.</h1>
+                </div>
+            </div>
+        </div>
+      </div>
+      
+      <footer class="container-fluid">
+          <hr>
+          <div class="row">
+              <p></p>
+          </div>
+      </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/jquery.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/lodash.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/backbone-min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/joint.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/bootstrap.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/graphlib.core.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/dagre.core.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/joint.layout.DirectedGraph.min.js"></script>
+    <script src="https://raw.githubusercontent.com/AlexanderHosnie/TuringMachine/master/simulator.js"></script>
+  </body>
+</html>
